@@ -15,9 +15,9 @@ MIT CSAIL and Google Research.<br/>
 In NeurIPS 2018.
 
 ## Example results
-(a) Typical examples produced by a recent GAN model [Gulrajani et al., 2017].
-(b) Our model produces three outputs: a 3D shape, its 2.5D projection given a viewpoint, and a final image with realistic texture.
-(c) Given this disentangled 3D representation, our method allows several 3D applications including changing viewpoint and editing shape or texture independently. Please see our code and website for more details.
+(a) Typical examples produced by a recent GAN model [Gulrajani et al., 2017].<br/>
+(b) Our model produces three outputs: a 3D shape, its 2.5D projection given a viewpoint, and a final image with realistic texture.<br/>
+(c) Given this disentangled 3D representation, our method allows several 3D applications including editing viewpoint, shape, or texture independently.
 
 <img src='imgs/overview.jpg' width=800>
 
