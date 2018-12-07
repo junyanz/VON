@@ -4,12 +4,14 @@
 
 We present Visual Object Networks (VON), an end-to-end adversarial learning framework that jointly models 3D shapes and 2D images.  Our model can synthesize a 3D shape, its intermediate 2.5D depth representation, and a final 2D image all at once. The VON not only generates images that are more realistic than state-of-the-art 2D image synthesis methods, but also enables several 3D operations.
 
+Note: Code coming tomorrow. 
+
 <img src='imgs/teaser.jpg' width=800>
 
-Visual Object Networks: Image Generation with Disentangled 3D Representation.
+Visual Object Networks: Image Generation with Disentangled 3D Representation.<br/>
 [Jun-Yan Zhu](http://people.csail.mit.edu/junyanz/),
- [Zhoutong Zhang](https://www.csail.mit.edu/person/zhoutong-zhang), [Chengkai Zhang](https://scholar.google.com/citations?user=rChGGwgAAAAJ&hl=en), [Jiajun Wu](https://jiajunwu.com/), [Antonio Torralba](http://web.mit.edu/torralba/www/), [    Joshua B. Tenenbaum](http://web.mit.edu/cocosci/josh.html), [William T. Freeman](http://billf.mit.edu/).
-MIT CSAIL and Google Research.
+ [Zhoutong Zhang](https://www.csail.mit.edu/person/zhoutong-zhang), [Chengkai Zhang](https://scholar.google.com/citations?user=rChGGwgAAAAJ&hl=en), [Jiajun Wu](https://jiajunwu.com/), [Antonio Torralba](http://web.mit.edu/torralba/www/), [    Joshua B. Tenenbaum](http://web.mit.edu/cocosci/josh.html), [William T. Freeman](http://billf.mit.edu/).<br/>
+MIT CSAIL and Google Research.<br/>
 In NeurIPS 2018.
 
 ## Example results
