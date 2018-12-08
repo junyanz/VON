@@ -38,7 +38,6 @@ while (True):
             break
         count += 1
 
-        # if opt.real_shape or opt.real_texture:
         model.reset_shape(opt.reset_shape and not opt.real_shape)
         model.reset_texture(opt.reset_texture and not opt.real_texture)
         model.set_input(data, opt.reset_shape and opt.real_shape, opt.reset_texture and opt.real_texture)
