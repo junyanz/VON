@@ -5,7 +5,7 @@
 
 [Project Page](http://von.csail.mit.edu) |  [Paper](http://arxiv.org/abs/1812.02725)
 
-We present Visual Object Networks (VON), an end-to-end adversarial learning framework that jointly models 3D shapes and 2D images.  Our model can synthesize a 3D shape, its intermediate 2.5D depth representation, and a final 2D image all at once. The VON not only generates images that are more realistic than recent 2D GANs, but also enables several 3D operations.
+We present Visual Object Networks (VON), an end-to-end adversarial learning framework that jointly models 3D shapes and 2D images.  Our model can synthesize a 3D shape, its intermediate 2.5D depth representation, and a 2D image all at once. The VON not only generates realistic images, but also enables several 3D operations.
 
 
 
@@ -61,7 +61,7 @@ source activate von
 ### Generate 3D shapes, 2.5D sketches, and images
 - Download our pretrained models:
 ```bash
-bash ./datasets/download_model.sh
+bash ./scripts/download_model.sh
 ```
 
 -generate results with the model
@@ -74,7 +74,7 @@ The test results will be saved to a html file here: `./results//val/index.html`.
 ### Model Training
 - To train a model, download the training dataset(distance functions and images).
 ```bash
-bash ./datasets/download_dataset.sh
+bash ./scripts/download_dataset.sh
 ```
 
 - Training 3D generative model:
