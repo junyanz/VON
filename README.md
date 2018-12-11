@@ -50,7 +50,7 @@ VON can transfer the texture of a real image to different shapes and viewpoints
 git clone -b master --single-branch https://github.com/junyanz/VON.git
 cd VON
 ```
--  Install PyTorch 0.4.1+ and torchvision from http://pytorch.org and other dependencies (e.g., [visdom](https://github.com/facebookresearch/visdom) and [dominate](https://github.com/Knio/dominate)). You can install all the dependencies by the following:
+- Install PyTorch 0.4.1+ and torchvision from http://pytorch.org and other dependencies (e.g., [visdom](https://github.com/facebookresearch/visdom) and [dominate](https://github.com/Knio/dominate)). You can install all the dependencies by the following:
 ```bash
 conda create --name von --file pkg_specs.txt
 source activate von
@@ -64,9 +64,9 @@ source activate von
 bash ./scripts/download_model.sh
 ```
 
--generate results with the model
+- Generate results with the model
 ```
-bash ./scripts/figures.sh 0 car
+bash ./scripts/figures.sh 0 car df
 ```
 
 The test results will be saved to a html file here: `./results//val/index.html`.
