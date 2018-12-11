@@ -2,10 +2,12 @@
 [Project Page](http://von.csail.mit.edu) |  [Paper](http://arxiv.org/abs/1812.02725)
 
 
+<img src='imgs/teaser.jpg' width=820>
+
+
 We present Visual Object Networks (VON), an end-to-end adversarial learning framework that jointly models 3D shapes and 2D images.  Our model can synthesize a 3D shape, its intermediate 2.5D depth representation, and a final 2D image all at once. The VON not only generates images that are more realistic than recent 2D GANs, but also enables several 3D operations.
 
 
-<img src='imgs/teaser.jpg' width=800>
 
 Visual Object Networks: Image Generation with Disentangled 3D Representation.<br/>
 [Jun-Yan Zhu](http://people.csail.mit.edu/junyanz/),
