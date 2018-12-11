@@ -45,13 +45,11 @@ class BaseOptions():
         # models
         parser.add_argument('--num_Ds', type=int, default=2, help='the number of discrminators')
         parser.add_argument('--gan_mode', type=str, default='lsgan', help='dcgan | lsgan | wgangp | hinge')  # for 2D texture network; not for 3D; use gan_mode_3D for 3D shape
-        parser.add_argument('--netD', type=str, default='single', help='selects model to use for netD')
-        parser.add_argument('--netD2', type=str, default='single', help='selects model to use for netD')
+        parser.add_argument('--netD', type=str, default='multi', help='selects model to use for netD')
         parser.add_argument('--netG', type=str, default='resnet_cat', help='selects model to use for netG')
         parser.add_argument('--netE', type=str, default='adaIN', help='selects model to use for netE')
         parser.add_argument('--netG_3D', type=str, default='G0', help='selects model to use for netG_3D')
         parser.add_argument('--netD_3D', type=str, default='D0', help='selects model to use for netD_3D')
-        parser.add_argument('--netM', type=str, default='downsample', help='selects model to use for netM')
         parser.add_argument('--norm', type=str, default='inst', help='instance normalization or batch normalization')
         parser.add_argument('--nl', type=str, default='relu', help='non-linearity activation: relu | lrelu | elu')
         parser.add_argument('--G_norm_3D', type=str, default='batch3d', help='normalization layer for G: inst3d | batch3d | none')

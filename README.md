@@ -72,28 +72,27 @@ bash ./scripts/figures.sh 0 car df
 The test results will be saved to a html file here: `./results//val/index.html`.
 
 ### Model Training
-- To train a model, download the training dataset(distance functions and images).
+- To train a model, download the training dataset (distance functions and images). For example, if we would like to train a car model with distance function representation on GPU 0.
 ```bash
 bash ./scripts/download_dataset.sh
 ```
-
-- Training 3D generative model:
+- To train a 3D generator:
 ```bash
-bash ./scripts/train_shapes.sh
+bash ./scripts/train_shapes.sh 0 car df
 ```
-- Training 2D image generation using ShapeNet objects:
+- To train a 2D texture network using ShapeNet real shapes:
 ```bash
-bash ./scripts/train_stage2_real.sh
+bash ./scripts/train_stage2_real.sh 0 car df
 ```
 
-- Train 2D image generation models using trained 3D generator:
+- To train a 2D texture network using pre-trained 3D generator:
 ```bash
-bash ./scripts/train_stage2.sh
+bash ./scripts/train_stage2.sh 0 car df
 ```
 
 - Jointly finetune 3D and 2D generative models:
 ```bash
-bash ./scripts/train_full.sh
+bash ./scripts/train_full.sh 0 car df
 ```
 
 - To view training results and loss plots, go to http://localhost:8097 in a web browser. To see more intermediate results, check out  `./checkpoints/*/web/index.html`

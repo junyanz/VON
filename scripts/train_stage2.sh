@@ -23,7 +23,5 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --df_th 0.90 \
   --random_shift --color_jitter \
   --batch_size 12 --gan_mode 'lsgan' \
-  --netD 'multi' --num_Ds 2 \
   --num_threads 6 \
-  --display_port 6543 \
   --suffix {class_3d}_${DATASET}

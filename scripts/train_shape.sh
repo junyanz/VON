@@ -14,10 +14,8 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
                     --dataset_mode ${DATASET} \
                     --model 'shape_gan' \
                     --class_3d ${CLASS} \
-                    --D_norm_3D none \
                     --checkpoints_dir ${CHECKPOINTS_DIR} \
                     --niter 250 --niter_decay 250 \
                     --batch_size 8 \
                     --save_epoch_freq 10 \
-                    --suffix {class_3d}_{model}_{dataset_mode}_D_{D_norm_3D} \
-                    --display_port 6543
+                    --suffix {class_3d}_{model}_{dataset_mode} \

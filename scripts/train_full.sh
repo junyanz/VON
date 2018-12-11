@@ -7,8 +7,6 @@ DATE=`date +%Y-%m-%d`
 
 
 # training
-
-
 DISPLAY_ID=$((GPU_ID*10+1))
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..
@@ -29,7 +27,5 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --norm 'inst' --netD 'multi' --num_Ds 2 \
   --random_shift \
   --color_jitter \
-  --display_freq 400 \
   --lambda_GAN_3D 0.05 \
-  --display_port 6543 --print_grad  \
   --suffix {model}_{class_3d}_${DATASET}

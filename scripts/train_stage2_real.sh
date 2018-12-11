@@ -23,11 +23,7 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --model 'stage2_real' \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --class_3d ${CLASS} \
-  --niter 100 --niter_decay 100 \
-  --load_size 128 --fine_size 128 \
   --random_shift \
-  --lambda_kl_real 0.001 \
-  --netD 'multi' --num_Ds 2 \
   --color_jitter \
   --norm 'inst' \
   --verbose \
@@ -35,4 +31,3 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --batch_size 12 --num_threads 6 \
   --gan_mode 'lsgan' \
   --suffix {class_3d}_${DATASET}_d2 \
-  --display_port 6543
