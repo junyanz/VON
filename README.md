@@ -66,7 +66,7 @@ bash ./scripts/download_model.sh
 
 -generate results with the model
 ```
-bash ./scripts/figs.sh car
+bash ./scripts/figures.sh 0 car
 ```
 
 The test results will be saved to a html file here: `./results//val/index.html`.
