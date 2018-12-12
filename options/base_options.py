@@ -13,7 +13,7 @@ class BaseOptions():
 
     def initialize(self, parser):
         parser.add_argument('--dataroot', type=str, default=None, help='path to images (should have subfolders trainA, trainB, valA, valB, etc)')
-        parser.add_argument('--batch_size', type=int, default=1, help='input batch size')
+        parser.add_argument('--batch_size', type=int, default=12, help='input batch size')
         parser.add_argument('--load_size', type=int, default=128, help='scale images to this size')
         parser.add_argument('--fine_size', type=int, default=128, help='then crop to this size')
         parser.add_argument('--crop_align', action='store_true', help='if the croping is aligned between real and fake')
@@ -34,7 +34,7 @@ class BaseOptions():
 
         parser.add_argument('--dataset_mode', type=str, default='base', help='base')
         parser.add_argument('--model', type=str, default='stage', help='chooses which model to use. bicycle,, ...')
-        parser.add_argument('--num_threads', default=4, type=int, help='# sthreads for loading data')
+        parser.add_argument('--num_threads', default=6, type=int, help='# sthreads for loading data')
         parser.add_argument('--checkpoints_dir', type=str, default='../../results_texture/', help='models are saved here')
 
         parser.add_argument('--serial_batches', action='store_true', help='if true, takes images in order to make batches, otherwise takes them randomly')

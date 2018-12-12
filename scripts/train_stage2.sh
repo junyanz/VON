@@ -21,5 +21,4 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --model2D_dir ${MODEL2D_DIR} \
   --model3D_dir ${MODEL3D_DIR} \
   --random_shift --color_jitter \
-  --batch_size 12 --num_threads 6 \
   --suffix {class_3d}_${DATASET}

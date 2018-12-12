@@ -18,10 +18,8 @@ CHECKPOINTS_DIR=${ROOT_DIR}/checkpoints/stage2_real/${CLASS}_${DATASET}/${DATE}/
 CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --display_id ${DISPLAY_ID} \
   --dataset_mode 'image_and_'${DATASET} \
-  --resize_or_crop 'crop_real_im' \
   --model 'stage2_real' \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --class_3d ${CLASS} \
   --random_shift --color_jitter \
-  --batch_size 12 --num_threads 6 \
   --suffix {class_3d}_${DATASET}_d2 \
