@@ -20,8 +20,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --model2D_dir ${MODEL2D_DIR} \
   --model3D_dir ${MODEL3D_DIR} \
-  --df_th 0.90 \
   --random_shift --color_jitter \
-  --batch_size 12 --gan_mode 'lsgan' \
-  --num_threads 6 \
+  --batch_size 12 --num_threads 6 \
   --suffix {class_3d}_${DATASET}

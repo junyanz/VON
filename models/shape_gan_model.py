@@ -12,7 +12,7 @@ class ShapeGANModel(BaseModel):
 
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
-        parser.add_argument('--lambda_GAN_3D', type=float, default=1.0, help='GANLoss weight for end to end finetune')
+        parser.add_argument('--lambda_GAN_3D', type=float, default=1.0, help='GANLoss weight for end to end finetuning; set as 1.0 for shap generation; set as 0.05 for full model')
         parser.add_argument('--lambda_gp_3D', type=float, default=10, help='WGANGP gradient penality coefficient')
         parser.add_argument('--gan_mode_3D', type=str, default='wgangp', help='dcgan | lsgan | wgangp | hinge')
         parser.add_argument('--gp_norm_3D', type=float, default=1.0, help='WGANGP gradient penality norm')

@@ -23,8 +23,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --model2D_dir ${MODEL2D_DIR} \
   --model3D_dir ${MODEL3D_DIR} \
-  --lambda_mask 2.5 --df_th 0.90 \
-  --norm 'inst' --netD 'multi' --num_Ds 2 \
   --random_shift \
   --color_jitter \
   --lambda_GAN_3D 0.05 \

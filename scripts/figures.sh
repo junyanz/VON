@@ -31,7 +31,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./test.py \
   --real_texture \
   --reset_texture \
   --show_input \
-  --suffix ${CLASS}_${DATASET}_${4} \
+  --suffix ${CLASS}_${DATASET} \
   --batch_size 1 \
   --use_df \
-  ${4}

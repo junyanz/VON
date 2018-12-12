@@ -3,7 +3,6 @@ set -ex
 GPU_ID=${1}
 CLASS=${2}
 DATASET=${3}
-DF_TH=0.9
 DATE=`date +%Y-%m-%d`
 DISPLAY_ID=$((GPU_ID*10+1))
 
@@ -23,11 +22,6 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
   --model 'stage2_real' \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --class_3d ${CLASS} \
-  --random_shift \
-  --color_jitter \
-  --norm 'inst' \
-  --verbose \
-  --df_th ${DF_TH} \
+  --random_shift --color_jitter \
   --batch_size 12 --num_threads 6 \
-  --gan_mode 'lsgan' \
   --suffix {class_3d}_${DATASET}_d2 \

@@ -73,7 +73,7 @@ class BaseOptions():
         parser.add_argument('--epoch', type=str, default='latest', help='which epoch to load? set to latest to use latest cached model')
         parser.add_argument('--phase', type=str, default='val', help='train, val, test, etc')
         parser.add_argument('--use_df', action='store_true', help='use distance function (DF) representation')
-        parser.add_argument('--df_th', type=float, default=0.85, help='threshold for rendering df')
+        parser.add_argument('--df_th', type=float, default=0.90, help='threshold for rendering df')
         parser.add_argument('--seed', type=int, default=0, help='seed')
 
         # special tasks

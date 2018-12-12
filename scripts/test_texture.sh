@@ -1,5 +1,3 @@
-
-
 # misc
 set -ex
 GPU_ID=${1}
@@ -28,12 +26,7 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./test.py \
   --class_3d ${CLASS} \
   --phase 'val' \
   --dataset_mode 'image_and_'${DATASET} \
-  --resize_or_crop 'crop_real_im' \
   --model 'test'  \
-  --norm 'inst' \
-  --verbose \
-  --load_size 128 --fine_size 128 \
-  --df_th 0.90 \
   --seed 10 \
   --n_shapes ${NUM_SHAPES} \
   --n_views ${NUM_SAMPLES} \
