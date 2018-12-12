@@ -75,7 +75,7 @@ bash ./scripts/download_model.sh
 bash ./scripts/figures.sh 0 car df
 ```
 
-The test results will be saved to an HTML file here: `./results/val/index.html`.
+The test results will be saved to an HTML file here: `./results/*/*/index.html`.
 
 ### Model Training
 - To train a model, download the training dataset (distance functions and images). For example, if we would like to train a car model with distance function representation on GPU 0.
