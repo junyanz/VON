@@ -25,9 +25,8 @@ CUDA_VISIBLE_DEVICES=${GPU_ID} python ./test.py \
   --model 'test'  \
   --n_shapes ${NUM_SHAPES} \
   --n_views ${NUM_SAMPLES} \
-  --real_texture \
   --reset_texture \
-  --show_input \
+  --reset_shape \
   --suffix ${CLASS}_${DATASET} \
   --batch_size 1 \
   --use_df \

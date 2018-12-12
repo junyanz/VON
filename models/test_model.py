@@ -27,6 +27,7 @@ class TestModel(BaseModel):
 
         self.netG_3D = self.define_G_3D()
         self.netG_AB = self.define_G(opt.input_nc, opt.output_nc, opt.nz_texture, ext='AB')
+        self.netE = self.define_E(opt.output_nc, self.vae)
         self.is_loaded = True
         self.n_views = opt.n_views
         self.bs = opt.batch_size
@@ -87,7 +88,6 @@ class TestModel(BaseModel):
                 self.z_shape = (1 - alpha) * self.z0_s + alpha * self.z1_s
             else:
                 self.z_shape = self.get_z_random(self.bs, self.nz_shape).view(self.bs, self.nz_shape, 1, 1, 1)
-
             self.z_shape = self.z_shape.to(self.device)
 
     def reset_texture(self, reset=True):

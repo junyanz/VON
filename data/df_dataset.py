@@ -22,6 +22,10 @@ class DFDataset(BaseDataset):
         self.size = len(self.items)
         self.df_flipped = opt.df_flipped
         self.return_raw = opt.dataset_mode == 'concat_real_df'
+        if hasattr(opt, 'real_shape'):
+            self.is_test_dummy = not opt.real_shape
+        else:
+            self.is_test_dummy = False
 
     @staticmethod
     def modify_commandline_options(parser, is_train):
@@ -30,6 +34,12 @@ class DFDataset(BaseDataset):
         return parser
 
     def __getitem__(self, index):
+        if not self.is_test_dummy:
+            return self.get_item(index)
+        else:
+            return {'voxel': 0, 'path': 'dummy'}
+
+    def get_item(self, index):
         index = index % len(self)
         data = np.load(self.items[index])['df']
         # 1 near surface instead of 0

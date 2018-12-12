@@ -41,6 +41,10 @@ class ImagesDataset(BaseDataset):
         self.transform_rgb = get_transform(opt, has_mask=False, no_flip=True, no_normalize=True)
         self.no_flip = opt.no_flip
         self.random_shift = opt.random_shift
+        if hasattr(opt, 'real_texture'):
+            self.is_test_dummy = not opt.real_texture
+        else:
+            self.is_test_dummy = False
 
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
@@ -86,6 +90,12 @@ class ImagesDataset(BaseDataset):
         return self.pose_pool
 
     def __getitem__(self, index):
+        if not self.is_test_dummy:
+            return self.get_item(index)
+        else:
+            return {'image_paths': 'dummy', 'image': 0, 'rotation_matrix': 0, 'real_im_mask': 0, 'viewpoint': 0}
+
+    def get_item(self, index):
         index = index % len(self)  # .__len__()
         pose_id = index
         flip = not self.no_flip and random.random() < 0.5
