@@ -5,7 +5,7 @@
 
 [Project Page](http://von.csail.mit.edu) |  [Paper](http://arxiv.org/abs/1812.02725)
 
-We present Visual Object Networks (VON), an end-to-end adversarial learning framework that jointly models 3D shapes and 2D images.  Our model can synthesize a 3D shape, its intermediate 2.5D depth representation, and a 2D image all at once. The VON not only generates realistic images, but also enables several 3D operations.
+We present Visual Object Networks (VON), an end-to-end adversarial learning framework that jointly models 3D shapes and 2D images.  Our model can synthesize a 3D shape, its intermediate 2.5D depth representation, and a 2D image all at once. The VON not only generates realistic images but also enables several 3D operations.
 
 
 
@@ -17,13 +17,13 @@ In NeurIPS 2018.
 
 ## Example results
 (a) Typical examples produced by a recent GAN model [Gulrajani et al., 2017].<br/>
-(b) Our model produces 3 outputs: a 3D shape, its 2.5D projection given a viewpoint, and a final image with realistic texture.<br/>
+(b) Our model produces three outputs: a 3D shape, its 2.5D projection given a viewpoint, and a final image with realistic texture.<br/>
 (c) Given this disentangled 3D representation, our method allows several 3D applications including editing viewpoint, shape, or texture independently.
 
 <img src='imgs/overview.jpg' width=800>
 
 ## More Samples
-Below we show more samples from DCGAN [Radford et al., 2016], LSGAN [Mao et al., 2017], WGAN-GP [Gulrajani et al., 2017], and our VON. For our method, we show both 3D shapes and 2D images. The learned 3D prior helps our model produce better samples.
+Below we show more samples from DCGAN [Radford et al., 2016], LSGAN [Mao et al., 2017], WGAN-GP [Gulrajani et al., 2017], and our VON. For our method, we show both 3D shapes and 2D images. The learned 3D prior helps produce better samples.
 
 <img src='imgs/samples.jpg' width=820>
 
@@ -69,7 +69,7 @@ bash ./scripts/download_model.sh
 bash ./scripts/figures.sh 0 car df
 ```
 
-The test results will be saved to a html file here: `./results//val/index.html`.
+The test results will be saved to an HTML file here: `./results/val/index.html`.
 
 ### Model Training
 - To train a model, download the training dataset (distance functions and images). For example, if we would like to train a car model with distance function representation on GPU 0.
