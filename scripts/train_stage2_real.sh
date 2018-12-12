@@ -16,7 +16,7 @@ CHECKPOINTS_DIR=${ROOT_DIR}/checkpoints/stage2_real/${CLASS}_${DATASET}/${DATE}/
 
 # command
 CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
-  --display_id 1001 \
+  --display_id ${DISPLAY_ID} \
   --dataset_mode 'image_and_'${DATASET} \
   --resize_or_crop 'crop_real_im' \
   --model 'stage2_real' \
