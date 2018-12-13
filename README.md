@@ -41,6 +41,8 @@ VON can transfer the texture of a real image to different shapes and viewpoints
 - Linux (only tested on Ubuntu 16.04)
 - Python3 (only tested with python 3.6)
 - Anaconda3
+- nvcc & gcc(only tested with gcc 6.3.0)
+- Pytorch 0.4.1 (does not support 0.4.0)
 
 
 ## Getting Started ###
