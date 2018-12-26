@@ -1,4 +1,3 @@
-from os.path import join
 from data.base_dataset import BaseDataset
 import numpy as np
 import torch

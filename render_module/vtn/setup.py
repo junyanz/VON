@@ -1,9 +1,6 @@
 import os
-import sys
-
 from setuptools import setup, find_packages
 
-import build
 
 this_file = os.path.dirname(__file__)
 
@@ -18,7 +15,7 @@ setup(
     install_requires=["cffi>=1.0.0"],
     setup_requires=["cffi>=1.0.0"],
     # Exclude the build files.
-    packages=find_packages(exclude=["build","test"]),
+    packages=find_packages(exclude=["build", "test"]),
     # Package where to put the extensions. Has to be a prefix of build.py.
     ext_package="",
     # Extensions to compile.

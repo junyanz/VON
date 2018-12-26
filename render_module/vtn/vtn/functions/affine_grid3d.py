@@ -17,7 +17,7 @@ class AffineGridGen3DFunction(Function):
     def forward(ctx, theta, size):          # note that ctx is pytorch context
         assert type(size) == torch.Size
         assert len(size) == 5, 'Grid size should be specified by size of tensor to interpolate (5D)'
-        assert theta.dim() == 3 and theta.size()[1:] == torch.Size([3,4]), '3D affine transformation defined by a 3D matrix of batch*3*4'
+        assert theta.dim() == 3 and theta.size()[1:] == torch.Size([3, 4]), '3D affine transformation defined by a 3D matrix of batch*3*4'
         assert theta.size(0) == size[0], 'batch size mismatch'
         N, C, sz1, sz2, sz3 = size
         ctx.size = size

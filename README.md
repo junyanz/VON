@@ -22,17 +22,17 @@ In NeurIPS 2018.
 
 <img src='imgs/overview.jpg' width=800>
 
-## More Samples
+## More samples
 Below we show more samples from DCGAN [Radford et al., 2016], LSGAN [Mao et al., 2017], WGAN-GP [Gulrajani et al., 2017], and our VON. For our method, we show both 3D shapes and 2D images. The learned 3D prior helps produce better samples.
 
 <img src='imgs/samples.jpg' width=820>
 
-## 3D Object Manipulations
+## 3D object manipulations
 Our Visual Object Networks (VON) allow several 3D applications such as (left) changing the viewpoint, texture, or shape independently, and (right) interpolating between two objects in shape space, texture space, or both.
 
 <img src='imgs/app.jpg' width=820>
 
-## Texture Transfer across Objects and Viewpoints
+## Transfer texture across objects and viewpoints
 VON can transfer the texture of a real image to different shapes and viewpoints
 
 <img src='imgs/transfer.jpg' width=820>
