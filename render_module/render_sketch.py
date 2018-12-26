@@ -1,10 +1,10 @@
 try:
     from .vtn.vtn.functions import grid_sample3d, affine_grid3d
-except:
+except ImportError:
     from vtn.vtn.functions import grid_sample3d, affine_grid3d
 try:
     from .calc_prob.calc_prob.functions.calc_prob import CalcStopProb
-except:
+except ImportError:
     from calc_prob.calc_prob.functions.calc_prob import CalcStopProb
 from torch import nn
 import torch

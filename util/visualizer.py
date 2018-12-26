@@ -111,7 +111,7 @@ class Visualizer():
             try:
                 self.vis.images(images, nrow=nrows, win=self.display_id + 1,
                                 opts=dict(title=title))
-            except:
+            except IOError:
                 self.throw_visdom_connection_error()
                 self.vis.images(images, nrow=nrows, win=self.display_id + 1,
                                 opts=dict(title=title))
@@ -158,7 +158,7 @@ class Visualizer():
                     'xlabel': 'epoch',
                     'ylabel': 'loss'},
                 win=self.display_id)
-        except:
+        except IOError:
             self.throw_visdom_connection_error()
             self.vis.line(
                 X=np.stack([np.array(self.plot_data['X'])] *

@@ -36,7 +36,7 @@ def crop_and_pad(img_paths):
             img = img[idh_min:idh_max, idw_min:idw_max]
             cropped = __pad_real_im(img).astype(np.uint8)
             cv2.imwrite(img_path, cropped)
-        except:
+        except IOError:
             continue
 
 
