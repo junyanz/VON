@@ -23,7 +23,5 @@ class TrainOptions(BaseOptions):
         parser.add_argument('--lr', type=float, default=0.0002, help='initial learning rate for adam')
         parser.add_argument('--lr_policy', type=str, default='lambda', help='learning rate policy: lambda|step|plateau')
         parser.add_argument('--pool_size', type=int, default=50, help='the size of image buffer that stores previously generated images')
-
-        # lambda 3D
         self.isTrain = True
         return parser

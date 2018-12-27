@@ -53,10 +53,7 @@ while (True):
             input_real = convert_image(model.input_B)
             all_images.append(input_real)
             all_names.append('real')
-        if opt.show_rec:
-            rec_B = convert_image(model.rec_B)
-            all_images.append(rec_B)
-            all_names.append('rec')
+
         for k in range(opt.n_views):
             model.reset_view(reset=True)
             image, depth, mask = model.sample_2d(view_id=k, extra=True)

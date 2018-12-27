@@ -59,9 +59,6 @@ def define_D(input_nc, ndf, model, fine_size=128,
         netD = D_NLayers(input_nc, ndf, n_layers=n_layers, norm_layer=norm_layer, nl_layer=nl_layer)
     elif model == 'multi':
         netD = D_NLayersMulti(input_nc=input_nc, ndf=ndf, n_layers=n_layers, norm_layer=norm_layer, num_D=num_Ds)
-    elif model == 'image':
-        n_layers = int(math.log(fine_size, 2)) - 2
-        netD = D_image(input_nc=input_nc, ndf=ndf, n_layers=n_layers, norm_layer=norm_layer, nl_layer=nl_layer)
     else:
         raise NotImplementedError('Discriminator model name [%s] is not recognized' % model)
 
@@ -113,41 +110,8 @@ class ListModule(object):
         return getattr(self.module, self.prefix + str(i))
 
 
-class D_image(nn.Module):
-    def __init__(self, input_nc, ndf, n_layers, norm_layer, nl_layer):
-        super(D_image, self).__init__()
-
-        kw = 4
-        padw = 1
-        use_bias = True
-        # st()
-        sequence = [
-            nn.Conv2d(input_nc, ndf, kernel_size=kw, stride=2, padding=padw, bias=use_bias),
-            nl_layer()  # nn.LeakyReLU(0.2, inplace=True)
-        ]
-
-        nf_mult = 1
-        nf_mult_prev = 1
-        for n in range(0, n_layers - 1):
-            nf_mult_prev = nf_mult
-            nf_mult = min(2**(n + 1), 8)
-            sequence += [nn.Conv2d(ndf * nf_mult_prev, ndf * nf_mult,
-                                   kernel_size=kw, stride=2, padding=padw, bias=use_bias)]
-            if norm_layer is not None:
-                sequence += [norm_layer(ndf * nf_mult)]
-            sequence += [nl_layer()]  # nn.LeakyReLU(0.2, True)
-
-        sequence += [nn.Conv2d(ndf * nf_mult, 1, kernel_size=4, stride=1, padding=0, bias=use_bias)]
-
-        self.model = nn.Sequential(*sequence)
-
-    def forward(self, input):
-        return self.model(input)
-
-
 class D_NLayersMulti(nn.Module):
-    def __init__(self, input_nc, ndf=64, n_layers=3,
-                 norm_layer=nn.BatchNorm2d, num_D=1):
+    def __init__(self, input_nc, ndf=64, n_layers=3, norm_layer=nn.BatchNorm2d, num_D=1):
         super(D_NLayersMulti, self).__init__()
 
         self.num_D = num_D
@@ -163,8 +127,7 @@ class D_NLayersMulti(nn.Module):
                 layers = self.get_layers(input_nc, ndf, n_layers, norm_layer)
                 self.model.append(nn.Sequential(*layers))
 
-    def get_layers(self, input_nc, ndf=64, n_layers=3,
-                   norm_layer=nn.BatchNorm2d):
+    def get_layers(self, input_nc, ndf=64, n_layers=3, norm_layer=nn.BatchNorm2d):
         kw = 4
         padw = 1
         sequence = [nn.Conv2d(input_nc, ndf, kernel_size=kw, stride=2, padding=padw), nn.LeakyReLU(0.2, True)]
@@ -206,8 +169,7 @@ class D_NLayersMulti(nn.Module):
 
 # Defines the conv discriminator with the specified arguments.
 class G_NLayers(nn.Module):
-    def __init__(self, output_nc=3, nz=100, ngf=64, n_layers=3,
-                 norm_layer=None, nl_layer=None):
+    def __init__(self, output_nc=3, nz=100, ngf=64, n_layers=3, norm_layer=None, nl_layer=None):
         super(G_NLayers, self).__init__()
 
         kw, s, padw = 4, 2, 1
@@ -238,8 +200,7 @@ class G_NLayers(nn.Module):
 
 
 class D_NLayers(nn.Module):
-    def __init__(self, input_nc=3, ndf=64, n_layers=3,
-                 norm_layer=None, nl_layer=None):
+    def __init__(self, input_nc=3, ndf=64, n_layers=3, norm_layer=None, nl_layer=None):
         super(D_NLayers, self).__init__()
 
         kw, padw, use_bias = 4, 1, True
