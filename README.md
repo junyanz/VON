@@ -61,9 +61,9 @@ source activate von
 
 - Compile our rendering kernel by running the following:
 ```bash
-./install.sh
+bash install.sh
 ```
-
+We only test this step with `gcc 6.3.0`. If you need to recompile the kernel, please run `bash clean.sh` first before you recompile it.
 
 - (Optional) Install [blender](https://www.blender.org/) for visualizing generated 3D shapes. After installation, please add blender to the PATH environment variable.
 
