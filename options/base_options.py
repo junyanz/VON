@@ -66,7 +66,7 @@ class BaseOptions():
         # misc
         parser.add_argument('--no_largest', action='store_true', help='disable using the largest connected component during rendering')
         parser.add_argument('--crop_align', action='store_true', help='if the croping is aligned between real and fake')
-        parser.add_argument('--suffix', default='', type=str, help='customized suffix: opt.name = opt.name + suffix: e.g., {netD}_{netG}_voxel{voxel_res}')
+        parser.add_argument('--suffix', default='', type=str, help='customized suffix: e.g., {netD}_{netG}_voxel{voxel_res}')
         parser.add_argument('--verbose', action='store_true', help='if specified, print more debugging information')
         parser.add_argument('--print_grad', action='store_true', help='if print grad for 2D and 3D gan loss')
         parser.add_argument('--seed', type=int, default=0, help='seed')

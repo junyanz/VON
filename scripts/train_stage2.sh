@@ -3,7 +3,7 @@ set -ex
 GPU_IDS=${1}
 CLASS=${2}    # car | chair
 DATASET=${3}  # voxel | df
-DISPLAY_ID=${4}
+DISPLAY_ID=$((${4}*10+1))
 DATE=`date +%Y-%m-%d`
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..

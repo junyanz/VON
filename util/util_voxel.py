@@ -48,8 +48,6 @@ def __pad_real_im(img, padding_pix_pct=0.03, img_size=256, padding_value=255):
     to make it a square, then resize to desired resolution
     """
     y1, x1, y2, x2 = [0, 0, img.shape[1], img.shape[0]]
-    # print(img.shape)
-    # print(y1, x1, y2, x2)
     w, h = img.shape[1], img.shape[0]
     x_mid = (x1 + x2) / 2.
     y_mid = (y1 + y2) / 2.
@@ -58,7 +56,6 @@ def __pad_real_im(img, padding_pix_pct=0.03, img_size=256, padding_value=255):
     x2 = int(np.round(x_mid + ll / 2.))
     y1 = int(np.round(y_mid - ll / 2.))
     y2 = int(np.round(y_mid + ll / 2.))
-    # print(y1, x1, y2, x2)
     b_x = 0
     if x1 < 0:
         b_x = -x1
@@ -75,7 +72,6 @@ def __pad_real_im(img, padding_pix_pct=0.03, img_size=256, padding_value=255):
     if y2 >= w:
         a_y = y2 - (w - 1)
         y2 = w - 1
-    # print(y1, x1, y2, x2)
     if len(img.shape) == 2:
         crop = np.pad(img[x1: x2 + 1, y1: y2 + 1],
                       ((b_x, a_x), (b_y, a_y)), mode='constant', constant_values=padding_value)

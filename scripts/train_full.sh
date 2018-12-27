@@ -3,7 +3,7 @@ set -ex
 GPU_IDS=${1}
 CLASS=${2}    # car | chair
 DATASET=${3}  # df | voxel
-DISPLAY_ID=${4}
+DISPLAY_ID=$((${4}*10+1))
 DATE=`date +%Y-%m-%d`
 
 # training
@@ -24,4 +24,4 @@ python train.py --gpu_ids ${GPU_IDS} \
   --model3D_dir ${MODEL3D_DIR} \
   --random_shift --color_jitter \
   --lambda_GAN_3D 0.05 \
-  --suffix {model}_{class_3d}_${DATASET}
+  --suffix {class_3d}_${DATASET}

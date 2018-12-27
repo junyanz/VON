@@ -653,9 +653,11 @@ class G_Resnet(nn.Module):
         super(G_Resnet, self).__init__()
         n_downsample = num_downs
         pad_type = 'reflect'
-        self.nz = nz
         self.enc_content = ContentEncoder(n_downsample, n_res, input_nc, ngf, norm, nl_layer, pad_type=pad_type)
-        self.dec = Decoder_all(n_downsample, n_res, self.enc_content.output_dim, output_nc, norm=norm, activ=nl_layer, pad_type=pad_type, nz=nz)
+        if nz == 0:
+            self.dec = Decoder(n_downsample, n_res, self.enc_content.output_dim, output_nc, norm=norm, activ=nl_layer, pad_type=pad_type, nz=nz)
+        else:
+            self.dec = Decoder_all(n_downsample, n_res, self.enc_content.output_dim, output_nc, norm=norm, activ=nl_layer, pad_type=pad_type, nz=nz)
 
     def decode(self, content, style=None):
         return self.dec(content, style)

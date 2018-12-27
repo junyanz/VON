@@ -153,7 +153,6 @@ class BaseModel():
         print('learning rate = %.7f' % lr)
 
     def apply_mask(self, input_image, mask, bg_color):
-        # mask_01 = (mask + 1) / 2
         output = mask * input_image + (1 - mask) * bg_color
         return output
 

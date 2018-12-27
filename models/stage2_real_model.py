@@ -109,20 +109,20 @@ class Stage2RealModel(BaseModel):
         # GAN loss D_A(G_A(A))
         self.fake_B = self.apply_mask(self.netG_AB(self.real_A, self.z_texture), self.mask_A, self.bg_B)
         self.loss_G_AB = self.critGAN(self.netD_A(self.fake_B), True, G_loss=True)
-        # # GAN loss D_B(G_B(B))
+        # GAN loss D_B(G_B(B))
         self.fake_A = self.apply_mask(self.netG_BA(self.real_B), self.mask_B, self.bg_A)
         self.loss_G_BA = self.critGAN(self.netD_B(self.fake_A), True, G_loss=True)
-        # # Forward image cycle loss
+        # Forward image cycle loss
         self.rec_A = self.apply_mask(self.netG_BA(self.fake_B), self.mask_A, self.bg_A)
         self.loss_cycle_A = self.critCycle(self.rec_A, self.real_A.detach()) * self.opt.lambda_cycle_A
-        # # Backward latent cycle loss
+        # Backward latent cycle loss
         self.z_encoded, mu1, logvar1 = self.encode(self.real_B, self.vae)
         if self.opt.lambda_kl_real > 0.0:
             self.loss_mu_enc = torch.mean(torch.abs(mu1))
             self.loss_var_enc = torch.mean(logvar1.exp())
         self.rec_B = self.apply_mask(self.netG_AB(self.fake_A, self.z_encoded), self.mask_B, self.bg_B)
         self.loss_cycle_B = self.critCycle(self.rec_B, self.real_B) * self.opt.lambda_cycle_B
-        # # latent cycle loss
+        # latent cycle loss
         z_predict, mu2, logvar2 = self.encode(self.fake_B, self.vae)
         self.loss_cycle_z = self.critCycle(z_predict, self.z_texture) * self.opt.lambda_z
         self.loss_kl_real = _cal_kl(mu1, logvar1, self.opt.lambda_kl_real)

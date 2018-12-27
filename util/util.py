@@ -66,8 +66,8 @@ def diagnose_network(net, name='network'):
             count += 1
     if count > 0:
         mean = mean / count
-    print(name)
-    print(mean)
+    print('name', name)
+    print('mean', mean)
 
 
 def interp_z(z0, z1, num_frames, interp_mode='linear'):
