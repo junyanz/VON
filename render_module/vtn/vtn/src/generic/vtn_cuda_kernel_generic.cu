@@ -111,7 +111,6 @@ __global__ void VTN_(BilinearSampler3DChannelFirst_updateOutput_kernel)(
     int osdb, int osdc, int osd1, int osd2, int osd3,
     int nthreads) {
 
-  int index;
   CUDA_KERNEL_LOOP(index, nthreads) {
     const int n = index % N;
     const int ind1 = (index / N) % osz1;
@@ -229,7 +228,6 @@ __global__ void VTN_(BilinearSampler3DChannelFirst_updateGradInput_kernel)(
     int gosdb, int gosdc, int gosd1, int gosd2, int gosd3,
     int nthreads) {
 
-  int index;
   CUDA_KERNEL_LOOP(index, nthreads) {
     const int n = index % N;
     const int ind1 = (index / N) % osz1;
