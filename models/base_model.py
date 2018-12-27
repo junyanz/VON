@@ -95,8 +95,8 @@ class BaseModel():
                                  model=opt.netD, fine_size=opt.fine_size,
                                  norm=opt.norm, nl=opt.nl, init_type=opt.init_type,
                                  init_param=opt.init_param, num_Ds=opt.num_Ds, gpu_ids=self.gpu_ids)
-        if opt.model2D_dir:
-            self.load_network(netD, opt.model2D_dir + '_net_D_%s.pth' % ext)
+        # if opt.model2D_dir: # skip loading Ds
+        # self.load_network(netD, opt.model2D_dir + '_net_D_%s.pth' % ext)
         return netD
 
     def define_E(self, input_nc, vae):
