@@ -22,7 +22,7 @@ class BaseOptions():
         parser.add_argument('--nz_shape', type=int, default=200, help='the dimension of shape code')
         parser.add_argument('--gpu_ids', type=str, default='0', help='gpu ids: e.g. 0  0,1,2, 0,2, -1 for CPU mode')
         parser.add_argument('--name', type=str, default='experiment_name', help='name of the experiment. It decides where to store samples and models')
-        parser.add_argument('--model', type=str, default='base', help='choose which model to use: base | shape_gan | stage2_real | stage2 | full | test')
+        parser.add_argument('--model', type=str, default='base', help='choose which model to use: base | shape_gan | texture_real | texture | full | test')
         parser.add_argument('--epoch', type=str, default='latest', help='which epoch to load? set to latest to use latest cached model')
         parser.add_argument('--phase', type=str, default='val', help='train | val | test, etc')
         parser.add_argument('--num_threads', default=6, type=int, help='# sthreads for loading data')

@@ -9,13 +9,13 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..
 MODEL2D_DIR=${ROOT_DIR}/final_models/models_2D/${CLASS}_${DATASET}/latest
 MODEL3D_DIR=${ROOT_DIR}/final_models/models_3D/${CLASS}_${DATASET}
-CHECKPOINTS_DIR=${ROOT_DIR}/checkpoints/stage2/${CLASS}_${DATASET}/${DATE}/
+CHECKPOINTS_DIR=${ROOT_DIR}/checkpoints/texture/${CLASS}_${DATASET}/${DATE}/
 
 # command
 python train.py --gpu_ids ${GPU_IDS} \
   --display_id ${DISPLAY_ID} \
   --dataset_mode image_and_${DATASET} \
-  --model 'stage2' \
+  --model 'texture' \
   --class_3d ${CLASS} \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --model2D_dir ${MODEL2D_DIR} \

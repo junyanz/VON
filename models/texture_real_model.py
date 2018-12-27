@@ -6,9 +6,9 @@ import torch
 from .networks_3d import _calc_grad_penalty
 
 
-class Stage2RealModel(BaseModel):
+class TextureRealModel(BaseModel):
     def name(self):
-        return 'Stage2RealModel'
+        return 'TextureRealModel'
 
     @staticmethod
     def modify_commandline_options(parser, is_train=True):

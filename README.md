@@ -91,12 +91,12 @@ bash ./scripts/train_shape.sh 0 car df
 ```
 - To train a 2D texture network using ShapeNet real shapes:
 ```bash
-bash ./scripts/train_stage2_real.sh 0 car df 0
+bash ./scripts/train_texture_real.sh 0 car df 0
 ```
 
 - To train a 2D texture network using pre-trained 3D generator:
 ```bash
-bash ./scripts/train_stage2.sh 0 car df 0
+bash ./scripts/train_texture.sh 0 car df 0
 ```
 
 - Jointly finetune 3D and 2D generative models:

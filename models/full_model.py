@@ -1,19 +1,19 @@
-from .stage2_real_model import Stage2RealModel
+from .texture_real_model import TextureRealModel
 from .shape_gan_model import ShapeGANModel
 
 
-class FullModel(Stage2RealModel, ShapeGANModel):
+class FullModel(TextureRealModel, ShapeGANModel):
     def name(self):
         return 'FullModel'
 
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
-        Stage2RealModel.modify_commandline_options(parser, is_train)
+        TextureRealModel.modify_commandline_options(parser, is_train)
         ShapeGANModel.modify_commandline_options(parser, is_train)
         return parser
 
     def initialize(self, opt):
-        Stage2RealModel.initialize(self, opt, base_init=True)
+        TextureRealModel.initialize(self, opt, base_init=True)
         ShapeGANModel.initialize(self, opt, base_init=False)
         if opt.lambda_GAN_3D == 0.0:
             self.loss_names = [x for x in self.loss_names if '3D' not in x]
@@ -38,13 +38,13 @@ class FullModel(Stage2RealModel, ShapeGANModel):
         self.mask_A, self.real_A, self.mask_B, self.real_B = self.crop_to_fine_size(mask_A_full, real_A_full, self.mask_B, self.input_B)
 
     def update_D(self):
-        Stage2RealModel.update_D(self)
+        TextureRealModel.update_D(self)
         if self.opt.lambda_GAN_3D > 0.0:
             ShapeGANModel.update_D(self)
 
     def update_G(self):
         self.optimizer_G_3D.zero_grad()
-        Stage2RealModel.update_G(self)
+        TextureRealModel.update_G(self)
         self.optimizer_G_3D.step()
         if self.opt.lambda_GAN_3D > 0.0:
             ShapeGANModel.update_G(self)

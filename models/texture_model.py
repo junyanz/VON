@@ -1,19 +1,19 @@
 import torch
-from .stage2_real_model import Stage2RealModel
+from .texture_real_model import TextureRealModel
 
 
-class Stage2Model(Stage2RealModel):
+class TextureModel(TextureRealModel):
     def name(self):
-        return 'Stage2Model'
+        return 'TextureModel'
 
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
-        Stage2RealModel.modify_commandline_options(parser, is_train)
+        TextureRealModel.modify_commandline_options(parser, is_train)
         return parser
 
     def initialize(self, opt, base_init=True):
         assert opt.input_nc == 1 and opt.output_nc == 3
-        Stage2RealModel.initialize(self, opt, base_init)
+        TextureRealModel.initialize(self, opt, base_init)
         self.nz_shape = opt.nz_shape
         self.netG_3D = self.define_G_3D()
         self.netG_3D.eval()

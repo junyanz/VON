@@ -7,7 +7,7 @@ class TrainOptions(BaseOptions):
         # display and print
         parser.add_argument('--display_freq', type=int, default=400, help='frequency of showing training results on screen')
         parser.add_argument('--display_id', type=int, default=1, help='window id of the web display')
-        parser.add_argument('--display_port', type=int, default=2005, help='visdom display port')
+        parser.add_argument('--display_port', type=int, default=8097, help='visdom display port')
         parser.add_argument('--update_html_freq', type=int, default=4000, help='frequency of saving training results to html')
         parser.add_argument('--print_freq', type=int, default=400, help='frequency of showing training results on console')
         parser.add_argument('--no_html', action='store_true', help='do not save intermediate training results to [opt.checkpoints_dir]/[opt.name]/web/')
