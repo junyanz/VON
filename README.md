@@ -59,13 +59,13 @@ conda create --name von --file pkg_specs.txt
 source activate von
 ```
 
-- Compile the rendering kernel by the following:
+- Compile our rendering kernel by running the following:
 ```bash
 ./install.sh
 ```
 
 
-- (Optional) Install [blender](https://www.blender.org/) for visualizing generated 3D shapes. After installation, please add blender to your PATH environment variable.
+- (Optional) Install [blender](https://www.blender.org/) for visualizing generated 3D shapes. After installation, please add blender to the PATH environment variable.
 
 ### Generate 3D shapes, 2.5D sketches, and images
 - Download our pretrained models:

@@ -1,3 +1,4 @@
+# remove the old built files
 cd render_module
 echo "clean calc_prob directory"
 bash ./calc_prob/clean.sh

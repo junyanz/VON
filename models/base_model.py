@@ -216,7 +216,7 @@ class BaseModel():
                 if hasattr(var, 'requires_grad'):
                     if var.requires_grad:
                         var = var.item()
-                losses_ret[name] = var  # getattr(self, 'loss_' + name)
+                losses_ret[name] = var
         return losses_ret
 
     def check_nan_inf(self):
@@ -224,12 +224,8 @@ class BaseModel():
         for k, v in losses.items():
             if np.isnan(v):
                 print('%s is nan!' % k)
-                import pdb
-                pdb.set_trace()
             elif np.isinf(v):
                 print('s is inf!' % k)
-                import pdb
-                pdb.set_trace()
             else:
                 continue
 
@@ -276,7 +272,6 @@ class BaseModel():
         max_depth = depth.data.max()
         # normalize the depth to [-1, 1]
         depth2 = 1 - (depth - min_depth) / (max_depth - min_depth) * 2
-        # sil2 = silhouette * 2 - 1
         return silhouette, depth2
 
     def move_to_cuda(self, gpu_idx=0):
@@ -340,7 +335,6 @@ class BaseModel():
         success = False
         MAX_RETRY = 10
         cnt = 0
-        # print('safe render')
         while not success and cnt < MAX_RETRY:
             try:
                 z_shape = self.get_z_random(batch_size, nz).view(batch_size, nz, 1, 1, 1).to(self.device)

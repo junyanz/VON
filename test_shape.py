@@ -36,14 +36,14 @@ os.makedirs(shape_dir, exist_ok=True)
 np.savez(join(shape_dir, 'sample_shapes'), df=sampled_shapes)
 space = 1.0 / float(opt.voxel_res)
 if not opt.use_df:
-    opt.th = 0.5
-print('thresholding = %f' % opt.th)
+    opt.ios_th = 0.5
+print('thresholding = %f' % opt.ios_th)
 views = np.zeros([6, 2])
 views[:, 0] = 30
 views[:, 1] = np.linspace(0, 360, 6, endpoint=False)
 for idx, s in enumerate(tqdm(sampled_shapes)):
     output = -np.log(s) / opt.df_sigma if opt.use_df else s
-    v, f, n, _ = measure.marching_cubes_lewiner(output, opt.th, spacing=(space, space, space))
+    v, f, n, _ = measure.marching_cubes_lewiner(output, opt.ios_th, spacing=(space, space, space))
     save_obj(v, f, join(shape_dir, '%04d' % idx))
     if opt.render_3d:
         render(join(shape_dir, '%04d.obj' % idx), views, '%04d' % idx, 512)
@@ -56,7 +56,7 @@ if opt.interp_shape:
         os.makedirs(save_dir, exist_ok=True)
         for step, s in enumerate(traj):
             output = -np.log(s) / opt.df_sigma if opt.use_df else s
-            v, f, n, _ = measure.marching_cubes_lewiner(output, opt.th, spacing=(space, space, space))
+            v, f, n, _ = measure.marching_cubes_lewiner(output, opt.ios_th, spacing=(space, space, space))
             save_obj(v, f, join(save_dir, 'step_%04d' % step))
             if opt.render_3d:
                 render(join(shape_dir, 'step_%04d.obj' % idx), views, 'step_%04d' % idx, 512)

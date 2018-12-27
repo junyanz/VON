@@ -4,11 +4,10 @@ from torch.nn import init
 import functools
 from torch.optim import lr_scheduler
 
+
 ###############################################################################
 # Functions
 ###############################################################################
-
-
 def init_weights(net, init_type='normal', init_param=0.02):
     def init_func(m):
         classname = m.__class__.__name__

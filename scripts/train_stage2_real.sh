@@ -1,8 +1,8 @@
 set -ex
 
 GPU_IDS=${1}
-CLASS=${2}
-DATASET=${3}
+CLASS=${2}  # car | chair
+DATASET=${3} # df | voxel
 DISPLAY_ID=${4}
 DATE=`date +%Y-%m-%d`
 

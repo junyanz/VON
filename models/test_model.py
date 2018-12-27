@@ -65,7 +65,6 @@ class TestModel(BaseModel):
         if not self.random_view:
             self.elevation = (posepool[:, 0] // 3) * 3
             self.azimuth = (posepool[:, 1] // 5) * 5
-            # import pdb; pdb.set_trace()
             views = np.zeros((self.n_views, 2))
             hist, bins = np.histogram(self.azimuth, bins=range(-90, 91, 5))
             sort_ids = hist.argsort()[::-1][: self.n_views]

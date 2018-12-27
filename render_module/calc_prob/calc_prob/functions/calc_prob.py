@@ -28,10 +28,6 @@ class CalcStopProb(Function):
         calc_prob_lib.calc_prob_backward(prob_in, stop_prob_weighted, grad_out)
         if torch.isnan(grad_out).any():
             print('nan gradient found')
-            import pdb
-            pdb.set_trace()
         elif torch.isinf(grad_out).any():
             print('inf gradient found')
-            import pdb
-            pdb.set_trace()
         return grad_out

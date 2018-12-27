@@ -3,11 +3,10 @@ import torch.nn as nn
 import math
 from .basics import get_norm_layer, get_non_linearity, init_net
 
+
 ###############################################################################
 # Functions
 ###############################################################################
-
-
 def _cal_kl(mu, logvar, lambda_kl):
     if lambda_kl > 0.0:
         logvar = torch.clamp(logvar, max=10.0)  # to prevent nan
@@ -742,7 +741,6 @@ class StyleEncoder(nn.Module):
 
         self.model = nn.Sequential(*self.model)
         self.output_dim = dim
-        # import pdb; pdb.set_trace()
 
     def forward(self, x):
         if self.vae:

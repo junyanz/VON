@@ -1,8 +1,8 @@
 set -ex
 
 GPU_IDS=${1}
-CLASS=${2}  # car or chair
-DATASET=${3} # df or voxel
+CLASS=${2}  # car | chair
+DATASET=${3} # df | voxel
 DATE=`date +%Y-%m-%d`
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..

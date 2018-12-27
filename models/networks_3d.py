@@ -36,8 +36,9 @@ def deconvBlock(input_nc, output_nc, bias, norm_layer=None, nl='relu'):
     return nn.Sequential(*layers)
 
 
-def toRGB(input_nc, rgb_nc, bias, zero_mean=False, sig=True):
-    layers = [nn.ConvTranspose3d(input_nc, rgb_nc, 4, 2, 1, bias=bias)]
+# the last layer of a generator
+def toRGB(input_nc, output_nc, bias, zero_mean=False, sig=True):
+    layers = [nn.ConvTranspose3d(input_nc, output_nc, 4, 2, 1, bias=bias)]
     if sig:
         layers += [nn.Sigmoid()]
     return nn.Sequential(*layers)
@@ -114,6 +115,7 @@ class _netD0(nn.Module):
         return output.view(-1, 1).squeeze(1)
 
 
+# the first layer of a discriminator
 def fromRGB(input_nc, output_nc, bias):
     layers = []
     layers += [nn.Conv3d(input_nc, output_nc, 4, 2, 1, bias=bias)]

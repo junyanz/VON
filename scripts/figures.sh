@@ -1,8 +1,8 @@
 # misc
 set -ex
 GPU_IDS=${1}   # 0
-CLASS=${2}    # car, chair
-DATASET=${3}  # df, voxel
+CLASS=${2}    # car | chair
+DATASET=${3}  # df | voxel
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..
 # models

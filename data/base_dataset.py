@@ -25,7 +25,7 @@ class BaseDataset(data.Dataset):
 
 def get_transform(opt, has_mask=False, no_flip=None, no_normalize=False):
     transform_list = []
-    if opt.color_jitter and not has_mask:
+    if hasattr(opt, 'color_jitter') and opt.color_jitter and not has_mask:
         transform_list.append(transforms.ColorJitter(hue=0.1))
     if opt.resize_or_crop == 'resize_and_crop':
         osize = [opt.load_size, opt.load_size]

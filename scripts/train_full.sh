@@ -1,8 +1,8 @@
 set -ex
 
 GPU_IDS=${1}
-CLASS=${2}
-DATASET=${3}
+CLASS=${2}    # car | chair
+DATASET=${3}  # df | voxel
 DISPLAY_ID=${4}
 DATE=`date +%Y-%m-%d`
 
@@ -22,7 +22,6 @@ python train.py --gpu_ids ${GPU_IDS} \
   --checkpoints_dir ${CHECKPOINTS_DIR} \
   --model2D_dir ${MODEL2D_DIR} \
   --model3D_dir ${MODEL3D_DIR} \
-  --random_shift \
-  --color_jitter \
+  --random_shift --color_jitter \
   --lambda_GAN_3D 0.05 \
   --suffix {model}_{class_3d}_${DATASET}

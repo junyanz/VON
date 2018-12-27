@@ -2,8 +2,8 @@ set -ex
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 PROJ_ROOT="$SCRIPTPATH/../"
 GPU_IDS=${1}
-DATASET_MODE=${2} # voxel or df
-MODEL_NAME=${3} # model name
+DATASET_MODE=${2} # df | voxel
+MODEL_NAME=${3} # model's full name, not only the class name
 
 
 
