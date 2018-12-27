@@ -7,6 +7,7 @@ DISPLAY_ID=$((${4}*10+1))
 DATE=`date +%Y-%m-%d`
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..
+# You need to update these directories for your own pretrained shape and texture models.
 MODEL2D_DIR=${ROOT_DIR}/final_models/models_2D/${CLASS}_${DATASET}/latest
 MODEL3D_DIR=${ROOT_DIR}/final_models/models_3D/${CLASS}_${DATASET}
 CHECKPOINTS_DIR=${ROOT_DIR}/checkpoints/texture/${CLASS}_${DATASET}/${DATE}/
