@@ -1,9 +1,9 @@
 set -ex
 
-GPU_ID=${1}
+GPU_IDS=${1}
 CLASS=${2}
 DATASET=${3}
-DISPLAY_ID=$((GPU_ID*10+1))
+DISPLAY_ID=${4}
 DATE=`date +%Y-%m-%d`
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..
@@ -12,7 +12,7 @@ MODEL3D_DIR=${ROOT_DIR}/final_models/models_3D/${CLASS}_${DATASET}
 CHECKPOINTS_DIR=${ROOT_DIR}/checkpoints/stage2/${CLASS}_${DATASET}/${DATE}/
 
 # command
-CUDA_VISIBLE_DEVICES=${GPU_ID} python ./train.py \
+python train.py --gpu_ids ${GPU_IDS} \
   --display_id ${DISPLAY_ID} \
   --dataset_mode image_and_${DATASET} \
   --model 'stage2' \

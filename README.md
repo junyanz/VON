@@ -87,21 +87,21 @@ bash ./scripts/download_dataset.sh
 ```
 - To train a 3D generator:
 ```bash
-bash ./scripts/train_shapes.sh 0 car df
+bash ./scripts/train_shape.sh 0 car df
 ```
 - To train a 2D texture network using ShapeNet real shapes:
 ```bash
-bash ./scripts/train_stage2_real.sh 0 car df
+bash ./scripts/train_stage2_real.sh 0 car df 0
 ```
 
 - To train a 2D texture network using pre-trained 3D generator:
 ```bash
-bash ./scripts/train_stage2.sh 0 car df
+bash ./scripts/train_stage2.sh 0 car df 0
 ```
 
 - Jointly finetune 3D and 2D generative models:
 ```bash
-bash ./scripts/train_full.sh 0 car df
+bash ./scripts/train_full.sh 0 car df 0
 ```
 
 - To view training results and loss plots, go to http://localhost:8097 in a web browser. To see more intermediate results, check out  `./checkpoints/*/web/index.html`

@@ -1,11 +1,10 @@
 # misc
 set -ex
-GPU_ID=${1}
+GPU_IDS=${1}
 CLASS=${2}
 DATASET=${3}
 
 # models
-DISPLAY_ID=$((GPU_ID*10+1))
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ROOT_DIR=${SCRIPTPATH}/..
 
@@ -19,7 +18,7 @@ NUM_SHAPES=10   # number of shapes duirng test
 NUM_SAMPLES=5  # number of samples per shape
 
 # command
-CUDA_VISIBLE_DEVICES=${GPU_ID} python ./test.py \
+python test.py --gpu_ids ${GPU_IDS} \
   --results_dir ${RESULTS_DIR} \
   --model2D_dir ${MODEL2D_DIR} \
   --model3D_dir ${MODEL3D_DIR} \

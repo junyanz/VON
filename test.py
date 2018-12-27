@@ -10,9 +10,10 @@ from tqdm import tqdm
 
 # options
 opt = TestOptions().parse()
-opt.num_threads = 1
+opt.num_threads = 0
 opt.serial_batches = True  # no shuffle
-
+opt.batch_size = 1  # force to be 1
+use_df = opt.use_df or opt.dataset_mode.find('df') >= 0
 # create dataset
 data_loader = CreateDataLoader(opt)
 dataset = data_loader.load_data()
@@ -72,7 +73,7 @@ while (True):
 
         if opt.render_3d:
             obj_name = join(model_path, 'shape%03d.obj' % (count))
-            save_vox_to_obj(model.voxel.data.cpu().numpy(), 0.5 if not opt.use_df else 0.85, obj_name)
+            save_vox_to_obj(model.voxel.data.cpu().numpy(), 0.5 if not use_df else 0.85, obj_name)
             render_prefix = join(model_path, 'shape{:03d}'.format(count))
             render(obj_name, model.views, render_prefix, 512)
 
