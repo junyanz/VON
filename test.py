@@ -1,7 +1,7 @@
 import os
 from os.path import join
 from options.test_options import TestOptions
-from data import CreateDataLoader
+from data import create_dataset
 from models import create_model
 from util.visualizer import save_images, convert_image
 from util.util_voxel import save_vox_to_obj, render
@@ -15,8 +15,7 @@ opt.serial_batches = True  # no shuffle
 opt.batch_size = 1  # force to be 1
 use_df = opt.use_df or opt.dataset_mode.find('df') >= 0
 # create dataset
-data_loader = CreateDataLoader(opt)
-dataset = data_loader.load_data()
+dataset = create_dataset(opt)
 model = create_model(opt)
 model.setup(opt)
 model.netG_3D.eval()
@@ -77,12 +76,12 @@ while (True):
         img_path = 'shape{:03d}'.format(count)
         model.count += 1
         save_images(webpage, all_images, all_names, img_path, None,
-                    width=opt.fine_size, aspect_ratio=opt.aspect_ratio)
+                    width=opt.crop_size, aspect_ratio=opt.aspect_ratio)
         if opt.render_25d:
             save_images(webpage, all_depths, all_depth_names, img_path, None,
-                        width=opt.fine_size, aspect_ratio=opt.aspect_ratio)
+                        width=opt.crop_size, aspect_ratio=opt.aspect_ratio)
             save_images(webpage, all_masks, all_mask_names, img_path, None,
-                        width=opt.fine_size, aspect_ratio=opt.aspect_ratio)
+                        width=opt.crop_size, aspect_ratio=opt.aspect_ratio)
         webpage.save()
         prog_bar.update(1)
 

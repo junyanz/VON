@@ -7,9 +7,6 @@ from .networks_3d import _calc_grad_penalty
 
 
 class TextureRealModel(BaseModel):
-    def name(self):
-        return 'TextureRealModel'
-
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
         parser.add_argument('--lambda_cycle_A', type=float, default=10.0, help='weight for forward cycle')
@@ -23,10 +20,10 @@ class TextureRealModel(BaseModel):
 
         return parser
 
-    def initialize(self, opt, base_init=True):
+    def __init__(self, opt, base_init=True):
         assert opt.input_nc == 1 and opt.output_nc == 3
         if base_init:
-            BaseModel.initialize(self, opt)
+            BaseModel.__init__(self, opt)
         self.nz_texture = opt.nz_texture
         self.use_df = opt.use_df or opt.dataset_mode.find('df') >= 0
         self.vae = opt.lambda_kl_real > 0.0
@@ -81,7 +78,7 @@ class TextureRealModel(BaseModel):
         self.voxel_real = input[1]['voxel']
         self.move_to_cuda()
         mask_A_full, real_A_full = self.get_depth(self.voxel_real, self.rot_mat, use_df=self.use_df)
-        self.mask_A, self.real_A, self.mask_B, self.real_B = self.crop_to_fine_size(mask_A_full, real_A_full, self.mask_B, self.input_B)
+        self.mask_A, self.real_A, self.mask_B, self.real_B = self.crop_image(mask_A_full, real_A_full, self.mask_B, self.input_B)
 
     def backward_D_B(self):
         fake_A = self.fake_A_pool.query(self.fake_A)

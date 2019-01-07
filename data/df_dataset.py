@@ -6,9 +6,9 @@ from os.path import join, dirname
 
 class DFDataset(BaseDataset):
 
-    def initialize(self, opt):
+    def __init__(self, opt):
+        BaseDataset.__init__(self, opt)
         dataroot = join(dirname(__file__), 'objects')
-        self.opt = opt
         if opt.class_3d == 'chair':
             filelist = join(dataroot, 'df_chair.txt')
         elif opt.class_3d == 'car':
@@ -57,6 +57,3 @@ class DFDataset(BaseDataset):
 
     def __len__(self):
         return self.size
-
-    def name(self):
-        return 'DFDataset'

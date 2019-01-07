@@ -1,14 +1,13 @@
 # import torch.backends.cudnn as cudnn
 import time
 from options.train_options import TrainOptions
-from data import CreateDataLoader
+from data import create_dataset
 from models import create_model
 from util.visualizer import Visualizer
 
 opt = TrainOptions().parse()  # set CUDA_VISIBLE_DEVICES before import torch
-data_loader = CreateDataLoader(opt)
-dataset = data_loader.load_data()
-dataset_size = len(data_loader)
+dataset = create_dataset(opt)
+dataset_size = len(dataset)
 print('#training data = %d' % dataset_size)
 model = create_model(opt)
 model.setup(opt)

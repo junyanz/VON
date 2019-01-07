@@ -4,14 +4,12 @@ from .concat_dataset import ConcatDataset
 
 
 class ImageAndDFDataset(ConcatDataset):
-    def __init__(self):
-        self.datasets = [ImagesDataset(), DFDataset()]
+    def __init__(self, opt):
+        ConcatDataset.__init__(self, opt)
+        self.datasets = [ImagesDataset(opt), DFDataset(opt)]
 
     @staticmethod
     def modify_commandline_options(parser, is_train):
         ImagesDataset.modify_commandline_options(parser, is_train)
         DFDataset.modify_commandline_options(parser, is_train)
         return parser
-
-    def name(self):
-        return 'ImageAndDFDataset'

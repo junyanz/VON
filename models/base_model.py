@@ -2,11 +2,12 @@ import os
 import torch
 from . import networks, networks_3d
 from collections import OrderedDict
+from abc import ABC, abstractmethod
 from .basics import get_scheduler
 import numpy as np
 
 
-class BaseModel():
+class BaseModel(ABC):
     @staticmethod
     def dict_grad_hook_factory(add_func=lambda x: x):
         saved_dict = dict()
@@ -24,10 +25,7 @@ class BaseModel():
     def modify_commandline_options(parser, is_train):
         return parser
 
-    def name(self):
-        return 'BaseModel'
-
-    def initialize(self, opt):
+    def __init__(self, opt):
         self.opt = opt
         self.gpu_ids = opt.gpu_ids
         self.use_cuda = len(self.gpu_ids) > 0
@@ -73,7 +71,6 @@ class BaseModel():
         netD = networks_3d.define_D_3D(res=opt.voxel_res, model=opt.netD_3D,
                                        ndf=opt.ndf_3d, norm=opt.D_norm_3D,
                                        init_type=opt.init_type, init_param=opt.init_param, gpu_ids=opt.gpu_ids)
-        # print(netD)
         if opt.model3D_dir:
             self.load_network(netD, opt.model3D_dir + '_D_3D.pth')
         return netD
@@ -81,7 +78,7 @@ class BaseModel():
     def define_G(self, input_nc, output_nc, nz, ext=''):
         opt = self.opt
         netG = networks.define_G(input_nc, output_nc, nz, opt.ngf,
-                                 model=opt.netG, fine_size=opt.fine_size,
+                                 model=opt.netG, crop_size=opt.crop_size,
                                  norm=opt.norm, nl=opt.nl, use_dropout=opt.use_dropout, init_type=opt.init_type, init_param=opt.init_param,
                                  gpu_ids=self.gpu_ids, where_add=self.opt.where_add)
 
@@ -92,7 +89,7 @@ class BaseModel():
     def define_D(self, input_nc, ext=''):
         opt = self.opt
         netD = networks.define_D(input_nc, opt.ndf,
-                                 model=opt.netD, fine_size=opt.fine_size,
+                                 model=opt.netD, crop_size=opt.crop_size,
                                  norm=opt.norm, nl=opt.nl, init_type=opt.init_type,
                                  init_param=opt.init_param, num_Ds=opt.num_Ds, gpu_ids=self.gpu_ids)
         # if opt.model2D_dir: # skip loading Ds
@@ -102,7 +99,7 @@ class BaseModel():
     def define_E(self, input_nc, vae):
         opt = self.opt
         netE = networks.define_E(input_nc, opt.nz_texture, opt.nef,
-                                 model=opt.netE, fine_size=opt.fine_size,
+                                 model=opt.netE, crop_size=opt.crop_size,
                                  norm=opt.norm, nl=opt.nl,
                                  init_type=opt.init_type, gpu_ids=self.gpu_ids,
                                  vae=vae)
@@ -113,16 +110,18 @@ class BaseModel():
     def define_E_all_z(self, input_nc, output_list, vae_list):
         opt = self.opt
         netE = networks.define_E_all_z(input_nc, output_list, opt.nef,
-                                       model=opt.netE_all_z, fine_size=opt.fine_size,
+                                       model=opt.netE_all_z, crop_size=opt.crop_size,
                                        norm=opt.norm, nl=opt.nl,
                                        init_type=opt.init_type, gpu_ids=self.gpu_ids, vae_list=vae_list)
         if opt.model2D_dir:
             self.load_network(netE, opt.model2D_dir + '_net_E_all_z.pth', notfound_ok=True)
         return netE
 
+    @abstractmethod
     def update_D(self):
         pass
 
+    @abstractmethod
     def update_G(self):
         pass
 
@@ -163,7 +162,7 @@ class BaseModel():
         voxel_shape = torch.Size([opt.batch_size, 1, vsize, vsize, vsize])
         self.renderLayer = VoxelRenderLayer(voxel_shape, res=vsize, nsamples_factor=2.5, camera_distance=2)
         self.croppinglayer = CroppingLayer(output_size=vsize, no_largest=opt.no_largest)
-        self.fineCropingLayer = FineSizeCroppingLayer(opt.fine_size)
+        self.fineCropingLayer = FineSizeCroppingLayer(opt.crop_size)
         self.angles_2_rotmat.to(self.device)
         self.renderLayer.to(self.device)
         self.croppinglayer.to(self.device)
@@ -176,7 +175,7 @@ class BaseModel():
             z = torch.randn(batch_size, nz)
         return z.to(self.device)
 
-    def crop_to_fine_size(self, mask_A_full, real_A_full, mask_B_full, real_B_full):
+    def crop_image(self, mask_A_full, real_A_full, mask_B_full, real_B_full):
         if not self.isTrain:
             return mask_A_full, real_A_full, mask_B_full, real_B_full
         random_A = np.random.random()
@@ -188,11 +187,8 @@ class BaseModel():
         return mask_A, real_A, mask_B, real_B
 
     # testing models
+    @abstractmethod
     def set_input(self, input):
-        pass
-
-    # sample code
-    def sample(self):
         pass
 
     def get_image_paths(self):

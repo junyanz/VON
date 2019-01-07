@@ -83,7 +83,8 @@ def _parse_class(class_str):
 
 
 class VoxelDataset(BaseDataset):
-    def initialize(self, opt):
+    def __init__(self, opt):
+        BaseDataset.__init(self, opt)
         opt.downsample = 1
         opt.pack_n = 10000
         opt.excl_subclass = None
@@ -170,9 +171,6 @@ class VoxelDataset(BaseDataset):
         transform_list.append(lambda v: torch.from_numpy(v).float())
         transform = transforms.Compose(transform_list)
         return transform
-
-    def name(self):
-        return 'VoxelDataset'
 
     def __getitem__(self, index):
         index = index % len(self)

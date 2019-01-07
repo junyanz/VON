@@ -4,16 +4,13 @@ import torch
 
 
 class TestModel(BaseModel):
-    def name(self):
-        return 'TestModel'
-
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
         return parser
 
-    def initialize(self, opt):
+    def __init__(self, opt):
         assert(not opt.isTrain)
-        BaseModel.initialize(self, opt)
+        BaseModel.__init__(self, opt)
         self.vae = True
         # specify the training losses you want to print out. The program will call base_model.get_current_losses
         self.loss_names = []

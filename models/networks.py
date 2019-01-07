@@ -24,7 +24,7 @@ def cat_feature(x, y):
 
 
 def define_G(input_nc, output_nc, nz, ngf,
-             model, fine_size=128, norm='batch', nl='relu',
+             model, crop_size=128, norm='batch', nl='relu',
              use_dropout=False, init_type='xavier', init_param=0.02, gpu_ids=[], where_add='input'):
     netG = None
     norm_layer = get_norm_layer(layer_type=norm)
@@ -33,7 +33,7 @@ def define_G(input_nc, output_nc, nz, ngf,
     if nz == 0:
         where_add = 'input'
 
-    n_blocks = int(math.log(fine_size, 2))
+    n_blocks = int(math.log(crop_size, 2))
 
     if model == 'unet' and where_add == 'input':
         netG = G_Unet_add_input(input_nc, output_nc, nz, n_blocks, ngf, norm_layer=norm_layer, nl_layer=nl_layer, use_dropout=use_dropout)
@@ -47,14 +47,14 @@ def define_G(input_nc, output_nc, nz, ngf,
     return init_net(netG, init_type, init_param, gpu_ids)
 
 
-def define_D(input_nc, ndf, model, fine_size=128,
+def define_D(input_nc, ndf, model, crop_size=128,
              norm='batch', nl='lrelu', init_type='xavier', init_param=0.02, num_Ds=1, gpu_ids=[]):
     netD = None
     norm_layer = get_norm_layer(layer_type=norm)
     nl = 'lrelu'  # use leaky relu for D
     nl_layer = get_non_linearity(layer_type=nl)
 
-    n_layers = int(math.log(fine_size, 2)) - 5
+    n_layers = int(math.log(crop_size, 2)) - 5
     if model == 'single':
         netD = D_NLayers(input_nc, ndf, n_layers=n_layers, norm_layer=norm_layer, nl_layer=nl_layer)
     elif model == 'multi':
@@ -65,14 +65,14 @@ def define_D(input_nc, ndf, model, fine_size=128,
     return init_net(netD, init_type, init_param, gpu_ids)
 
 
-def define_E(input_nc, output_nc, nef, model, fine_size=128,
+def define_E(input_nc, output_nc, nef, model, crop_size=128,
              norm='batch', nl='lrelu',
              init_type='xavier', init_param=0.02, gpu_ids=[], vae=False):
     netE = None
     norm_layer = get_norm_layer(layer_type=norm)
     nl = 'lrelu'  # use leaky relu for E
     nl_layer = get_non_linearity(layer_type=nl)
-    n_blocks = int(math.log(fine_size, 2)) - 3
+    n_blocks = int(math.log(crop_size, 2)) - 3
     if model == 'resnet':
         netE = E_ResNet(input_nc, output_nc, nef, n_blocks=n_blocks, norm_layer=norm_layer, nl_layer=nl_layer, vae=vae)
     elif model == 'conv':

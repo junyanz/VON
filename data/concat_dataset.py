@@ -2,8 +2,8 @@ from .base_dataset import BaseDataset
 
 
 class ConcatDataset(BaseDataset):
-    def __init__(self, *datasets):
-        self.datasets = datasets
+    def __init__(self, opt):
+        BaseDataset.__init__(self, opt)
 
     def __getitem__(self, i):
         return tuple(d[i] for d in self.datasets)
@@ -14,10 +14,3 @@ class ConcatDataset(BaseDataset):
     @staticmethod
     def modify_commandline_options(parser, is_train):
         return parser
-
-    def name(self):
-        return 'ConcatDataset'
-
-    def initialize(self, opt):
-        for dataset in self.datasets:
-            dataset.initialize(opt)

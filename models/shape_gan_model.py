@@ -7,9 +7,6 @@ import os
 
 
 class ShapeGANModel(BaseModel):
-    def name(self):
-        return 'ShapeGANModel'
-
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
         parser.add_argument('--lambda_GAN_3D', type=float, default=1.0, help='GANLoss weight for end to end finetuning; set as 1.0 for shap generation; set as 0.05 for full model')
@@ -21,9 +18,9 @@ class ShapeGANModel(BaseModel):
         parser.add_argument('--lr_3d', type=float, default=0.0001, help='initial learning rate for adam')
         return parser
 
-    def initialize(self, opt, base_init=True):
+    def __init__(self, opt, base_init=True):
         if base_init:
-            BaseModel.initialize(self, opt)
+            BaseModel.__init__(self, opt)
         self.loss_names += ['G_3D', 'D_real_3D', 'D_fake_3D', 'D_3D']
         self.nz_shape = opt.nz_shape
         if self.isTrain:

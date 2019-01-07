@@ -3,18 +3,15 @@ from .shape_gan_model import ShapeGANModel
 
 
 class FullModel(TextureRealModel, ShapeGANModel):
-    def name(self):
-        return 'FullModel'
-
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
         TextureRealModel.modify_commandline_options(parser, is_train)
         ShapeGANModel.modify_commandline_options(parser, is_train)
         return parser
 
-    def initialize(self, opt):
-        TextureRealModel.initialize(self, opt, base_init=True)
-        ShapeGANModel.initialize(self, opt, base_init=False)
+    def __init__(self, opt):
+        TextureRealModel.__init__(self, opt, base_init=True)
+        ShapeGANModel.__init__(self, opt, base_init=False)
         if opt.lambda_GAN_3D == 0.0:
             self.loss_names = [x for x in self.loss_names if '3D' not in x]
         if opt.print_grad:
@@ -35,7 +32,7 @@ class FullModel(TextureRealModel, ShapeGANModel):
 
         mask_A_full, real_A_full, _ = self.safe_render(self.netG_3D, self.bs, self.nz_shape, flipped=False)
 
-        self.mask_A, self.real_A, self.mask_B, self.real_B = self.crop_to_fine_size(mask_A_full, real_A_full, self.mask_B, self.input_B)
+        self.mask_A, self.real_A, self.mask_B, self.real_B = self.crop_image(mask_A_full, real_A_full, self.mask_B, self.input_B)
 
     def update_D(self):
         TextureRealModel.update_D(self)

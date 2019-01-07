@@ -9,8 +9,8 @@ from os.path import join, dirname
 
 
 class ImagesDataset(BaseDataset):
-    def initialize(self, opt):
-        self.opt = opt
+    def __init__(self, opt):
+        BaseDataset.__init__(self, opt)
         self.root = join(dirname(__file__), 'images')
         if opt.class_3d == 'car':
             pose_pool = np.load(join(self.root, 'pose_car.npz'))
@@ -35,7 +35,7 @@ class ImagesDataset(BaseDataset):
 
         with open(crawl_list) as f:
             imgs_paths = f.read().splitlines()
-        self.paths = [join(dirname(__file__), x) for x in imgs_paths]  # + cityscape_paths
+        self.paths = [join(dirname(__file__), x) for x in imgs_paths]
         self.size = len(self.paths)
         self.transform_mask = get_transform(opt, has_mask=True, no_flip=True, no_normalize=True)
         self.transform_rgb = get_transform(opt, has_mask=False, no_flip=True, no_normalize=True)
@@ -96,6 +96,9 @@ class ImagesDataset(BaseDataset):
         else:
             return {'image_paths': 'dummy', 'image': 0, 'rotation_matrix': 0, 'real_im_mask': 0, 'viewpoint': 0}
 
+    def __len__(self):
+        return len(self.paths)
+
     def get_item(self, index):
         index = index % len(self)  # .__len__()
         pose_id = index
@@ -123,6 +126,3 @@ class ImagesDataset(BaseDataset):
             mask = mask.index_select(2, idx)
 
         return {'image_paths': pathA, 'image': rgb, 'rotation_matrix': R, 'real_im_mask': mask, 'viewpoint': viewpoint}
-
-    def name(self):
-        return 'ImagesDataset'
