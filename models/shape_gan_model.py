@@ -73,8 +73,8 @@ class ShapeGANModel(BaseModel):
         pred_real = self.netD_3D(self.voxel_real)
         errD_fake = self.critGAN_3D(pred_fake, False)
         errD_real = self.critGAN_3D(pred_real, True)
-        loss_GP, gradients = _calc_grad_penalty(self.netD_3D, self.voxel_real, fake.detach(), self.device, norm=self.opt.gp_norm_3D,
-                                                ll=self.opt.lambda_gp_3D * self.opt.lambda_GAN_3D, type=self.opt.gp_type_3D)
+        loss_GP, gradients = _calc_grad_penalty(self.netD_3D, self.voxel_real, fake.detach(), self.device, type=self.opt.gp_type_3D, constant=self.opt.gp_norm_3D,
+                                                lambda_gp=self.opt.lambda_gp_3D * self.opt.lambda_GAN_3D)
 
         if type(loss_GP) != float:
             loss_GP.backward(retain_graph=True)
@@ -91,7 +91,7 @@ class ShapeGANModel(BaseModel):
         if self.opt.print_grad:  # HACK
             fake.register_hook(self.grad_hook_gen('3d_grad'))
         pred_fake = self.netD_3D(fake)
-        errG = self.critGAN_3D(pred_fake, True, G_loss=True) * self.opt.lambda_GAN_3D
+        errG = self.critGAN_3D(pred_fake, True) * self.opt.lambda_GAN_3D
         self._record_loss('G_3D', errG)
         errG.backward()
 

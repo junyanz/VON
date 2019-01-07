@@ -6,7 +6,7 @@ from torch.optim import lr_scheduler
 
 
 ###############################################################################
-# Functions
+# Helper functions
 ###############################################################################
 def init_weights(net, init_type='normal', init_param=0.02):
     def init_func(m):
@@ -41,7 +41,7 @@ def init_net(net, init_type='normal', init_param=0.02, gpu_ids=[]):
 
 
 def get_scheduler(optimizer, opt):
-    if opt.lr_policy == 'lambda':
+    if opt.lr_policy == 'linear':
         def lambda_rule(epoch):
             lr_l = 1.0 - max(0, epoch + opt.epoch_count - opt.niter) / float(opt.niter_decay + 1)
             return lr_l

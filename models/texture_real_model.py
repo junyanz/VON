@@ -105,10 +105,10 @@ class TextureRealModel(BaseModel):
     def backward_GE(self):
         # GAN loss D_A(G_A(A))
         self.fake_B = self.apply_mask(self.netG_AB(self.real_A, self.z_texture), self.mask_A, self.bg_B)
-        self.loss_G_AB = self.critGAN(self.netD_A(self.fake_B), True, G_loss=True)
+        self.loss_G_AB = self.critGAN(self.netD_A(self.fake_B), True)
         # GAN loss D_B(G_B(B))
         self.fake_A = self.apply_mask(self.netG_BA(self.real_B), self.mask_B, self.bg_A)
-        self.loss_G_BA = self.critGAN(self.netD_B(self.fake_A), True, G_loss=True)
+        self.loss_G_BA = self.critGAN(self.netD_B(self.fake_A), True)
         # Forward image cycle loss
         self.rec_A = self.apply_mask(self.netG_BA(self.fake_B), self.mask_A, self.bg_A)
         self.loss_cycle_A = self.critCycle(self.rec_A, self.real_A.detach()) * self.opt.lambda_cycle_A

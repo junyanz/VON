@@ -138,3 +138,9 @@ class TestModel(BaseModel):
         R_all = torch.mm(R_rot, R0)
         R[:3, :3] = R_all
         return R
+
+    def update_D(self):
+        pass
+
+    def update_G(self):
+        pass
