@@ -331,7 +331,7 @@ def fill(use_compile=False, compile_flag={'cache': True, 'nopython': True}, **kw
 if __name__ == '__main__':
     import os
     from scipy.io import loadmat
-    test_filename = '/data/vision/billf/object-properties/dataset/billf-6/ShapeNetCore.v2/04256520/12cd30f7f83f441dc13b22d2a852f9c2/models/model_normalized_128.mat'
+    test_filename = '/path/to/model_normalized_128.mat'
     gt = loadmat(test_filename)['voxel']
     gt = downsample(gt, 4)
     print(gt.shape)
@@ -361,7 +361,7 @@ if __name__ == '__main__':
     save_test_filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'util_voxel_test.npz')
     np.savez_compressed(save_test_filename, voxels=np.stack(results))
 
-    s = 'blender --background --python /data/vision/billf/jwu-phys/shape_oneshot/ckzhang/shared/render/voxel_render/voxel_render.py -- '
+    s = 'blender --background --python /path/to/voxel_render.py -- '
     s += ' --input %s ' % save_test_filename
     s += " --saveobj 1 --saveimg 0 --skimage 1 --threshold 0.5"  # note that this is visualization threshold, since all output are converted to 0/1
     print(s)

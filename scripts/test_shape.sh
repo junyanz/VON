@@ -1,18 +1,10 @@
 set -ex
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-PROJ_ROOT="$SCRIPTPATH/../"
 GPU_IDS=${1}
 DATASET_MODE=${2} # df | voxel
 MODEL_NAME=${3} # model's full name, not only the class name
 
-
-
-if [ ${USER} == 'junyanz' ]
-then
-  CHECKPOINTS_DIR=/data/vision/billf/scratch/junyanz/texture/ck_3d/}${MODEL_NAME}
-else
-  CHECKPOINTS_DIR=/data/vision/billf/scratch/ztzhang/texture/checkpoints_shape_df/}${MODEL_NAME}
-fi
+CHECKPOINTS_DIR=${SCRIPTPATH}/ck_shape/${MODEL_NAME}
 
 # training
 for EPOCH in 50 100 150 200 250 300 350 400 450 500
