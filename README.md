@@ -41,9 +41,10 @@ VON can transfer the texture of a real image to different shapes and viewpoints
 - Linux (only tested on Ubuntu 16.04)
 - Python3 (only tested with python 3.6)
 - Anaconda3
-- nvcc & gcc (only tested with gcc 6.3.0)
+- NVCC & GCC (only tested with gcc 6.3.0)
 - PyTorch 0.4.1 (does not support 0.4.0)
 - Currently not tested with Nvidia RTX GPU series
+- Docker Engine and Nvidia-Docker2 if using Docker container.
 
 
 ## Getting Started ###
@@ -64,6 +65,21 @@ source activate von
 bash install.sh
 ```
 We only test this step with `gcc 6.3.0`. If you need to recompile the kernel, please run `bash clean.sh` first before you recompile it.
+
+- If you can not compile the custom kernels, we provide a Dockerfile for building a working container. To use the Dockerfile, you need to install [Docker Engine](https://www.docker.com) and [Nvidia-Docker2](https://github.com/NVIDIA/nvidia-docker) for using Nvidia GPUs inside the docker container. To build the docker image, run:
+```bash
+sudo docker build ./../von -t von
+```
+To access the container, run:
+```bash
+sudo docker run -it --runtime=nvidia --ipc=host von /bin/bash
+```
+Then, to compile the kernels, simply:
+```bash
+cd /app/von
+source activate von
+./install.sh
+```
 
 - (Optional) Install [blender](https://www.blender.org/) for visualizing generated 3D shapes. After installation, please add blender to the PATH environment variable.
 
