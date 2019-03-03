@@ -30,7 +30,7 @@ if [ "$HAS_CUDA" == "True" ]; then
     fi
     cd vtn/src
     HERE=$(pwd -P)
-    cmd="nvcc -c -o vtn_cuda_kernel_generic.cu.o vtn_cuda_kernel_generic.cu -x cu -Xcompiler -fPIC -I ${TORCH}/lib/include/TH -I ${TORCH}/lib/include -I ${TORCH}/lib/include/THC -I ${HERE} \
+    cmd="nvcc -c -o vtn_cuda_kernel_generic.cu.o vtn_cuda_kernel_generic.cu -x cu -Xcompiler -fPIC -std=c++11 -I ${TORCH}/lib/include/TH -I ${TORCH}/lib/include -I ${TORCH}/lib/include/THC -I ${HERE} \
         -gencode arch=compute_30,code=sm_30 \
         -gencode arch=compute_35,code=sm_35 \
         -gencode arch=compute_52,code=sm_52 \

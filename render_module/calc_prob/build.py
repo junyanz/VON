@@ -6,6 +6,7 @@ this_file = os.path.dirname(os.path.realpath(__file__))
 print(this_file)
 
 extra_compile_args = list()
+extra_compile_args.append('-std=c++11')
 
 extra_objects = list()
 assert(torch.cuda.is_available())
