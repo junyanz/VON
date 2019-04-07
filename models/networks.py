@@ -713,7 +713,7 @@ class StyleEncoder(nn.Module):
             output_var = self.fc_var(output)
             return output_mean, output_var
         else:
-            return self.model(x)
+            return self.model(x).view(x.size(0), -1)
 
 
 class ContentEncoder(nn.Module):

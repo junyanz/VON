@@ -220,7 +220,7 @@ class BaseModel(ABC):
             if np.isnan(v):
                 print('%s is nan!' % k)
             elif np.isinf(v):
-                print('s is inf!' % k)
+                print('%s is inf!' % k)
             else:
                 continue
 

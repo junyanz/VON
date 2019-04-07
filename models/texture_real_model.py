@@ -95,7 +95,7 @@ class TextureRealModel(BaseModel):
         loss_D.backward()  # backward
 
         if self.opt.gan_mode == 'wgangp':
-            loss_gp, _ = _calc_grad_penalty(netD, real, fake.detach(), self.device, type='mixed', norm=self.opt.gp_norm, ll=self.opt.lambda_gp)
+            loss_gp, _ = _calc_grad_penalty(netD, real, fake.detach(), self.device, type='mixed', constant=self.opt.gp_norm, ll=self.opt.lambda_gp)
             loss_gp.backward(retain_graph=True)
         else:
             loss_gp = 0.0
