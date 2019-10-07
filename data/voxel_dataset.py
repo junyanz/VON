@@ -11,29 +11,27 @@ from os.path import dirname, basename
 
 paths = {
     'canon_scaled': {
-        'merged': None,  # '/data/vision/billf/jwu-phys/shape_oneshot/ckzhang/datacache/ShapeNetCore.v2/{classid}_{res:d}_{split:02d}.mat',
-        'filelist': '/data/vision/billf/jwu-phys/shape_oneshot/ckzhang/datacache/ShapeNetCore.v2.scaled/{classid}_{res:d}.csv',
-        'filepath': '/data/vision/billf/object-properties/dataset/billf-6/ShapeNetCore.v2/{classid}/*/models/model_normalized_{res:d}.mat',
+        'merged': None,
+        'filelist': '/path/to/shapenet/ShapeNetCore.v2.scaled/{classid}_{res:d}.csv',
+        'filepath': '/path/to/shapenet/ShapeNetCore.v2/{classid}/*/models/model_normalized_{res:d}.mat',
         'matname': 'voxel'
     },
     'canon': {
         'merged': None,
-        'filelist': '/data/vision/billf/jwu-phys/shape_oneshot/ckzhang/datacache/ShapeNetCore.v2/{classid}_{res:d}.csv',
-        'filepath': '/data/vision/billf/object-properties/dataset/billf-6/ShapeNetCore.v2/{classid}/*/models/model_normalized_samescale_zup_{res:d}.mat',
+        'filelist': '/path/to/shapenet/ShapeNetCore.v2/{classid}_{res:d}.csv',
+        'filepath': '/path/to/shapenet/ShapeNetCore.v2/{classid}/*/models/model_normalized_samescale_zup_{res:d}.mat',
         'matname': 'voxel'
     },
     'rotated_scaled': {
-        'merged': None,  # '/data/vision/billf/jwu-phys/shape_oneshot/xiuming/output/shapenet-core-v2_normal-depth-voxel-packs/packs_{pack_n}/?????????.npz',
-        'filelist': '/data/vision/billf/jwu-phys/shape_oneshot/ckzhang/datacache/ShapeNetCore.v2.scaled.rotate/{classid}_{res:d}.csv',
-        'filepath': '/data/vision/billf/jwu-phys/shape_oneshot/xiuming/output/shapenet-core-v2_single-pass/{classid}/*/{classid}_*_view???_voxel_{res:d}.npz',
+        'merged': None,
+        'filelist': '/path/to/shapenet/ShapeNetCore.v2.scaled.rotate/{classid}_{res:d}.csv',
+        'filepath': '/path/to/shapenet/shapenet-core-v2_single-pass/{classid}/*/{classid}_*_view???_voxel_{res:d}.npz',
         'matname': 'voxel',
-        # 'merged_matname': 'voxels',
-        # 'merged_ids': 'class_ids'
     },
     'rotated': {
         'merged': None,
-        'filelist': '/data/vision/billf/jwu-phys/shape_oneshot/ckzhang/datacache/ShapeNetCore.v2.rotate/{classid}_{res:d}.csv',
-        'filepath': '/data/vision/billf/jwu-phys/shape_oneshot/xiuming/output/shapenet-core-v2_single-pass/{classid}/*/{classid}_*_view???_gt_rotvox_samescale_{res:d}.npz',
+        'filelist': '/path/to/shapenet/ShapeNetCore.v2.rotate/{classid}_{res:d}.csv',
+        'filepath': '/path/to/shapenet/shapenet-core-v2_single-pass/{classid}/*/{classid}_*_view???_gt_rotvox_samescale_{res:d}.npz',
         'matname': 'voxel',
     }
 }
@@ -58,7 +56,7 @@ label_to_class = common_classes['all'].split('+')
 class_to_label = {label_to_class[idx]: idx for idx in range(len(label_to_class))}
 
 
-chair_subclass_file = '/data/vision/billf/jwu-phys/shape_oneshot/xiuming/output/shapenet-core-v2_subclass/filelist_03001627.txt'
+chair_subclass_file = '/path/to/shapenet/shapenet-core-v2_subclass/filelist_03001627.txt'
 chair_subclass_aliases = {
     'lt30': '+'.join([str(x) for x in range(20, 46)]),
     'ge30': '+'.join([str(x) for x in range(1, 20)])}

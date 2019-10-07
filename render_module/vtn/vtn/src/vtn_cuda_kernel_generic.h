@@ -5,7 +5,6 @@
 
 // #include "generic/vtn_cuda_kernel_generic.h"
 // #include "generic/THCGenerateFloatTypes_noHalf.h"
-// gcc -E vtn_cuda_kernel_generic.h -I /data/vision/billf/object-properties/lib/anaconda3/lib/python3.6/site-packages/torch/lib/include -I /data/vision/billf/object-properties/lib/anaconda3/lib/python3.6/site-packages/torch/lib/include/TH -I /data/vision/billf/object-properties/lib/anaconda3/lib/python3.6/site-packages/torch/lib/include/THC -I . -I /usr/local/cuda-8.0/include | grep VTN_.*\{
 
 #ifdef __cplusplus
 extern "C" {
