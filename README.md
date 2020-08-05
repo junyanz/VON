@@ -10,7 +10,7 @@ We present Visual Object Networks (VON), an end-to-end adversarial learning fram
 
 
 Visual Object Networks: Image Generation with Disentangled 3D Representation.<br/>
-[Jun-Yan Zhu](http://people.csail.mit.edu/junyanz/),
+[Jun-Yan Zhu](https://www.cs.cmu.edu/~junyanz/),
  [Zhoutong Zhang](https://www.csail.mit.edu/person/zhoutong-zhang), [Chengkai Zhang](https://scholar.google.com/citations?user=rChGGwgAAAAJ&hl=en), [Jiajun Wu](https://jiajunwu.com/), [Antonio Torralba](http://web.mit.edu/torralba/www/), [    Joshua B. Tenenbaum](http://web.mit.edu/cocosci/josh.html), [William T. Freeman](http://billf.mit.edu/).<br/>
 MIT CSAIL and Google Research.<br/>
 In NeurIPS 2018.
